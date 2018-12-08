@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metro.mapper.ActivemqMsgsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.metro.entity.ActivemqMsgs">
+        <id column="ID" property="id" />
+        <result column="CONTAINER" property="container" />
+        <result column="MSGID_PROD" property="msgidProd" />
+        <result column="MSGID_SEQ" property="msgidSeq" />
+        <result column="EXPIRATION" property="expiration" />
+        <result column="MSG" property="msg" />
+        <result column="PRIORITY" property="priority" />
+        <result column="XID" property="xid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID AS id, CONTAINER AS container, MSGID_PROD AS msgidProd, MSGID_SEQ AS msgidSeq, EXPIRATION AS expiration, MSG AS msg, PRIORITY AS priority, XID AS xid
+    </sql>
+
+</mapper>

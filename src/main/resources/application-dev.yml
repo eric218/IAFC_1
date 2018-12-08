@@ -1,0 +1,18 @@
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@61.183.232.58:8521:oraletest
+    username: iafc_dev
+    password: iafc123
+mybatis-plus:
+  #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+  global-config:
+    id-type: 0
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  typeAliasesPackage: com.metro.entity
+  configuration:
+    #打印sql语句,调试用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
