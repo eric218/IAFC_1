@@ -2,6 +2,7 @@ package com.metro.controler;
 
 
 import com.metro.entity.ActivemqMsgs;
+import com.metro.mq.IMessageProducerService;
 import com.metro.service.IActivemqMsgsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,10 +23,16 @@ import org.springframework.web.bind.annotation.*;
 public class ActivemqMsgsController {
     @Autowired
     IActivemqMsgsService activemqMsgsService;
+
+    @Autowired
+    IMessageProducerService messageProducer;
     @ApiOperation(value = "1.1测试" ,  notes="id:id")
     @RequestMapping(value = "/getIndexMenuBySiteId" ,  method = RequestMethod.GET)
     public String getIndexMenuBySiteId(@RequestParam(name = "id") int id){
         ActivemqMsgs msg = activemqMsgsService.selectById(id);
+        for (int x = 0; x < 10; x++) {
+            this.messageProducer.sendMessage("study - " + x);
+        }
        return msg!=null?msg.getContainer():null;
     }
 }

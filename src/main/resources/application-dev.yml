@@ -5,6 +5,10 @@ spring:
     url: jdbc:oracle:thin:@61.183.232.58:8521:oraletest
     username: iafc_dev
     password: iafc123
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://localhost:61616
 mybatis-plus:
   #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
   global-config:
