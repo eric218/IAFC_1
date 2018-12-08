@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.*;
  * @author wangwei
  * @since 2018-12-08
  */
-@Api(description = "联谊会菜单接口(前台)")
+@Api(description = "1.测试")
 @RestController
 @RequestMapping("/test")
 @CrossOrigin(origins = "*")
 public class ActivemqMsgsController {
     @Autowired
     IActivemqMsgsService activemqMsgsService;
-    @ApiOperation(value = "前台首页静态菜单" ,  notes="siteId:网站id")
+    @ApiOperation(value = "1.1测试" ,  notes="id:id")
     @RequestMapping(value = "/getIndexMenuBySiteId" ,  method = RequestMethod.GET)
-    public String getIndexMenuBySiteId(@RequestParam(name = "siteId") int siteId){
-        ActivemqMsgs msg = activemqMsgsService.selectById(siteId);
+    public String getIndexMenuBySiteId(@RequestParam(name = "id") int id){
+        ActivemqMsgs msg = activemqMsgsService.selectById(id);
        return msg!=null?msg.getContainer():null;
     }
 }
