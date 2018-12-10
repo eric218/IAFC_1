@@ -2,6 +2,7 @@ package com.metro.controler;
 
 
 import com.metro.entity.ActivemqMsgs;
+import com.metro.mapper.YlDealInMapper;
 import com.metro.mq.IMessageProducerService;
 import com.metro.service.IActivemqMsgsService;
 import io.swagger.annotations.Api;
@@ -25,6 +26,9 @@ public class ActivemqMsgsController {
     IActivemqMsgsService activemqMsgsService;
 
     @Autowired
+    private YlDealInMapper ylDealInMapper;
+
+    @Autowired
     IMessageProducerService messageProducer;
     @ApiOperation(value = "1.1测试" ,  notes="id:id")
     @RequestMapping(value = "/getIndexMenuBySiteId" ,  method = RequestMethod.GET)
@@ -34,6 +38,13 @@ public class ActivemqMsgsController {
             this.messageProducer.sendMessage("study - " + x);
         }
        return msg!=null?msg.getContainer():null;
+    }
+
+    @ApiOperation(value = "1.1测试" ,  notes="id:id")
+    @RequestMapping(value = "/test2" ,  method = RequestMethod.GET)
+    public String test2(){
+        ylDealInMapper.deleteByPrimaryKey("");
+        return null;
     }
 }
 

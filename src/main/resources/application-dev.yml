@@ -9,14 +9,19 @@ spring:
     user: admin
     password: admin
     broker-url: tcp://localhost:61616
-mybatis-plus:
-  #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
-  global-config:
-    id-type: 0
-  mapper-locations: classpath*:/mapper/**Mapper.xml
-  typeAliasesPackage: com.metro.entity
-  configuration:
-    #打印sql语句,调试用
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis-plus:
+#  #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+#  global-config:
+#    id-type: 0
+#  mapper-locations: classpath*:/mapper/**Mapper.xml
+#  typeAliasesPackage: com.metro.entity
+#  configuration:
+#    #打印sql语句,调试用
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis:
+  mapper-locations: classpath*:/mapping/*.xml
+  type-aliases-package: com.metro.entity
+#  typeAliasesPackage: com.metro.entity
+#  mapperLocations: classpath*:/mapping/*.xml
 
 

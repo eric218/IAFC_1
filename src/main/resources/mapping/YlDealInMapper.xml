@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.metro.mapper.YlDealInMapper" >
+  <resultMap id="BaseResultMap" type="com.metro.entity.YlDealIn" >
+    <id column="EVENT_NO" property="eventNo" jdbcType="VARCHAR" />
+    <result column="SAVE_TIME" property="saveTime" jdbcType="TIMESTAMP" />
+    <result column="DEAL_DEVICE_CODE" property="dealDeviceCode" jdbcType="VARCHAR" />
+    <result column="DEAL_SEQ_GROUP_NO" property="dealSeqGroupNo" jdbcType="VARCHAR" />
+    <result column="DEAL_SEQ_NO" property="dealSeqNo" jdbcType="VARCHAR" />
+    <result column="DEAL_STATION" property="dealStation" jdbcType="VARCHAR" />
+    <result column="DEAL_TYPE" property="dealType" jdbcType="VARCHAR" />
+    <result column="MAIN_TYPE" property="mainType" jdbcType="VARCHAR" />
+    <result column="SUB_TYPE" property="subType" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="SAM_CODE" property="samCode" jdbcType="VARCHAR" />
+    <result column="LOGICAL_CODE" property="logicalCode" jdbcType="VARCHAR" />
+    <result column="READ_COUNT" property="readCount" jdbcType="DECIMAL" />
+    <result column="DEAL_AMOUNT" property="dealAmount" jdbcType="DECIMAL" />
+    <result column="BALANCE" property="balance" jdbcType="DECIMAL" />
+    <result column="DEAL_TIME" property="dealTime" jdbcType="TIMESTAMP" />
+    <result column="TAC" property="tac" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATE" property="operationDate" jdbcType="TIMESTAMP" />
+    <result column="DEAL_MODE" property="dealMode" jdbcType="VARCHAR" />
+    <result column="REC_FLAG" property="recFlag" jdbcType="VARCHAR" />
+    <result column="MATCH_FLAG" property="matchFlag" jdbcType="VARCHAR" />
+    <result column="MATCH_TIME" property="matchTime" jdbcType="TIMESTAMP" />
+    <result column="ACC_FLAG" property="accFlag" jdbcType="VARCHAR" />
+    <result column="ACC_FILE_NAME" property="accFileName" jdbcType="VARCHAR" />
+    <result column="ACC_FILE_TIME" property="accFileTime" jdbcType="TIMESTAMP" />
+    <result column="ACC_FILE_LINE_CODE" property="accFileLineCode" jdbcType="DECIMAL" />
+    <result column="SPLIT_TIME" property="splitTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    EVENT_NO, SAVE_TIME, DEAL_DEVICE_CODE, DEAL_SEQ_GROUP_NO, DEAL_SEQ_NO, DEAL_STATION, 
+    DEAL_TYPE, MAIN_TYPE, SUB_TYPE, AREA_CODE, SAM_CODE, LOGICAL_CODE, READ_COUNT, DEAL_AMOUNT, 
+    BALANCE, DEAL_TIME, TAC, OPERATION_DATE, DEAL_MODE, REC_FLAG, MATCH_FLAG, MATCH_TIME, 
+    ACC_FLAG, ACC_FILE_NAME, ACC_FILE_TIME, ACC_FILE_LINE_CODE, SPLIT_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.metro.entity.YlDealInExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from YL_DEAL_IN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from YL_DEAL_IN
+    where EVENT_NO = #{eventNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from YL_DEAL_IN
+    where EVENT_NO = #{eventNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.metro.entity.YlDealInExample" >
+    delete from YL_DEAL_IN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.metro.entity.YlDealIn" >
+    insert into YL_DEAL_IN (EVENT_NO, SAVE_TIME, DEAL_DEVICE_CODE, 
+      DEAL_SEQ_GROUP_NO, DEAL_SEQ_NO, DEAL_STATION, 
+      DEAL_TYPE, MAIN_TYPE, SUB_TYPE, 
+      AREA_CODE, SAM_CODE, LOGICAL_CODE, 
+      READ_COUNT, DEAL_AMOUNT, BALANCE, 
+      DEAL_TIME, TAC, OPERATION_DATE, 
+      DEAL_MODE, REC_FLAG, MATCH_FLAG, 
+      MATCH_TIME, ACC_FLAG, ACC_FILE_NAME, 
+      ACC_FILE_TIME, ACC_FILE_LINE_CODE, SPLIT_TIME
+      )
+    values (#{eventNo,jdbcType=VARCHAR}, #{saveTime,jdbcType=TIMESTAMP}, #{dealDeviceCode,jdbcType=VARCHAR}, 
+      #{dealSeqGroupNo,jdbcType=VARCHAR}, #{dealSeqNo,jdbcType=VARCHAR}, #{dealStation,jdbcType=VARCHAR}, 
+      #{dealType,jdbcType=VARCHAR}, #{mainType,jdbcType=VARCHAR}, #{subType,jdbcType=VARCHAR}, 
+      #{areaCode,jdbcType=VARCHAR}, #{samCode,jdbcType=VARCHAR}, #{logicalCode,jdbcType=VARCHAR}, 
+      #{readCount,jdbcType=DECIMAL}, #{dealAmount,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, 
+      #{dealTime,jdbcType=TIMESTAMP}, #{tac,jdbcType=VARCHAR}, #{operationDate,jdbcType=TIMESTAMP}, 
+      #{dealMode,jdbcType=VARCHAR}, #{recFlag,jdbcType=VARCHAR}, #{matchFlag,jdbcType=VARCHAR}, 
+      #{matchTime,jdbcType=TIMESTAMP}, #{accFlag,jdbcType=VARCHAR}, #{accFileName,jdbcType=VARCHAR}, 
+      #{accFileTime,jdbcType=TIMESTAMP}, #{accFileLineCode,jdbcType=DECIMAL}, #{splitTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.metro.entity.YlDealIn" >
+    insert into YL_DEAL_IN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventNo != null" >
+        EVENT_NO,
+      </if>
+      <if test="saveTime != null" >
+        SAVE_TIME,
+      </if>
+      <if test="dealDeviceCode != null" >
+        DEAL_DEVICE_CODE,
+      </if>
+      <if test="dealSeqGroupNo != null" >
+        DEAL_SEQ_GROUP_NO,
+      </if>
+      <if test="dealSeqNo != null" >
+        DEAL_SEQ_NO,
+      </if>
+      <if test="dealStation != null" >
+        DEAL_STATION,
+      </if>
+      <if test="dealType != null" >
+        DEAL_TYPE,
+      </if>
+      <if test="mainType != null" >
+        MAIN_TYPE,
+      </if>
+      <if test="subType != null" >
+        SUB_TYPE,
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="samCode != null" >
+        SAM_CODE,
+      </if>
+      <if test="logicalCode != null" >
+        LOGICAL_CODE,
+      </if>
+      <if test="readCount != null" >
+        READ_COUNT,
+      </if>
+      <if test="dealAmount != null" >
+        DEAL_AMOUNT,
+      </if>
+      <if test="balance != null" >
+        BALANCE,
+      </if>
+      <if test="dealTime != null" >
+        DEAL_TIME,
+      </if>
+      <if test="tac != null" >
+        TAC,
+      </if>
+      <if test="operationDate != null" >
+        OPERATION_DATE,
+      </if>
+      <if test="dealMode != null" >
+        DEAL_MODE,
+      </if>
+      <if test="recFlag != null" >
+        REC_FLAG,
+      </if>
+      <if test="matchFlag != null" >
+        MATCH_FLAG,
+      </if>
+      <if test="matchTime != null" >
+        MATCH_TIME,
+      </if>
+      <if test="accFlag != null" >
+        ACC_FLAG,
+      </if>
+      <if test="accFileName != null" >
+        ACC_FILE_NAME,
+      </if>
+      <if test="accFileTime != null" >
+        ACC_FILE_TIME,
+      </if>
+      <if test="accFileLineCode != null" >
+        ACC_FILE_LINE_CODE,
+      </if>
+      <if test="splitTime != null" >
+        SPLIT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventNo != null" >
+        #{eventNo,jdbcType=VARCHAR},
+      </if>
+      <if test="saveTime != null" >
+        #{saveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealDeviceCode != null" >
+        #{dealDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSeqGroupNo != null" >
+        #{dealSeqGroupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSeqNo != null" >
+        #{dealSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealStation != null" >
+        #{dealStation,jdbcType=VARCHAR},
+      </if>
+      <if test="dealType != null" >
+        #{dealType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainType != null" >
+        #{mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="subType != null" >
+        #{subType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="samCode != null" >
+        #{samCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logicalCode != null" >
+        #{logicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="readCount != null" >
+        #{readCount,jdbcType=DECIMAL},
+      </if>
+      <if test="dealAmount != null" >
+        #{dealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tac != null" >
+        #{tac,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealMode != null" >
+        #{dealMode,jdbcType=VARCHAR},
+      </if>
+      <if test="recFlag != null" >
+        #{recFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="matchFlag != null" >
+        #{matchFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTime != null" >
+        #{matchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accFlag != null" >
+        #{accFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="accFileName != null" >
+        #{accFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="accFileTime != null" >
+        #{accFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accFileLineCode != null" >
+        #{accFileLineCode,jdbcType=DECIMAL},
+      </if>
+      <if test="splitTime != null" >
+        #{splitTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.metro.entity.YlDealInExample" resultType="java.lang.Integer" >
+    select count(*) from YL_DEAL_IN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update YL_DEAL_IN
+    <set >
+      <if test="record.eventNo != null" >
+        EVENT_NO = #{record.eventNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saveTime != null" >
+        SAVE_TIME = #{record.saveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dealDeviceCode != null" >
+        DEAL_DEVICE_CODE = #{record.dealDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealSeqGroupNo != null" >
+        DEAL_SEQ_GROUP_NO = #{record.dealSeqGroupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealSeqNo != null" >
+        DEAL_SEQ_NO = #{record.dealSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealStation != null" >
+        DEAL_STATION = #{record.dealStation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealType != null" >
+        DEAL_TYPE = #{record.dealType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainType != null" >
+        MAIN_TYPE = #{record.mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subType != null" >
+        SUB_TYPE = #{record.subType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCode != null" >
+        AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.samCode != null" >
+        SAM_CODE = #{record.samCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logicalCode != null" >
+        LOGICAL_CODE = #{record.logicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readCount != null" >
+        READ_COUNT = #{record.readCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dealAmount != null" >
+        DEAL_AMOUNT = #{record.dealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balance != null" >
+        BALANCE = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dealTime != null" >
+        DEAL_TIME = #{record.dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tac != null" >
+        TAC = #{record.tac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationDate != null" >
+        OPERATION_DATE = #{record.operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dealMode != null" >
+        DEAL_MODE = #{record.dealMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recFlag != null" >
+        REC_FLAG = #{record.recFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.matchFlag != null" >
+        MATCH_FLAG = #{record.matchFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.matchTime != null" >
+        MATCH_TIME = #{record.matchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accFlag != null" >
+        ACC_FLAG = #{record.accFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accFileName != null" >
+        ACC_FILE_NAME = #{record.accFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accFileTime != null" >
+        ACC_FILE_TIME = #{record.accFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accFileLineCode != null" >
+        ACC_FILE_LINE_CODE = #{record.accFileLineCode,jdbcType=DECIMAL},
+      </if>
+      <if test="record.splitTime != null" >
+        SPLIT_TIME = #{record.splitTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update YL_DEAL_IN
+    set EVENT_NO = #{record.eventNo,jdbcType=VARCHAR},
+      SAVE_TIME = #{record.saveTime,jdbcType=TIMESTAMP},
+      DEAL_DEVICE_CODE = #{record.dealDeviceCode,jdbcType=VARCHAR},
+      DEAL_SEQ_GROUP_NO = #{record.dealSeqGroupNo,jdbcType=VARCHAR},
+      DEAL_SEQ_NO = #{record.dealSeqNo,jdbcType=VARCHAR},
+      DEAL_STATION = #{record.dealStation,jdbcType=VARCHAR},
+      DEAL_TYPE = #{record.dealType,jdbcType=VARCHAR},
+      MAIN_TYPE = #{record.mainType,jdbcType=VARCHAR},
+      SUB_TYPE = #{record.subType,jdbcType=VARCHAR},
+      AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      SAM_CODE = #{record.samCode,jdbcType=VARCHAR},
+      LOGICAL_CODE = #{record.logicalCode,jdbcType=VARCHAR},
+      READ_COUNT = #{record.readCount,jdbcType=DECIMAL},
+      DEAL_AMOUNT = #{record.dealAmount,jdbcType=DECIMAL},
+      BALANCE = #{record.balance,jdbcType=DECIMAL},
+      DEAL_TIME = #{record.dealTime,jdbcType=TIMESTAMP},
+      TAC = #{record.tac,jdbcType=VARCHAR},
+      OPERATION_DATE = #{record.operationDate,jdbcType=TIMESTAMP},
+      DEAL_MODE = #{record.dealMode,jdbcType=VARCHAR},
+      REC_FLAG = #{record.recFlag,jdbcType=VARCHAR},
+      MATCH_FLAG = #{record.matchFlag,jdbcType=VARCHAR},
+      MATCH_TIME = #{record.matchTime,jdbcType=TIMESTAMP},
+      ACC_FLAG = #{record.accFlag,jdbcType=VARCHAR},
+      ACC_FILE_NAME = #{record.accFileName,jdbcType=VARCHAR},
+      ACC_FILE_TIME = #{record.accFileTime,jdbcType=TIMESTAMP},
+      ACC_FILE_LINE_CODE = #{record.accFileLineCode,jdbcType=DECIMAL},
+      SPLIT_TIME = #{record.splitTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.metro.entity.YlDealIn" >
+    update YL_DEAL_IN
+    <set >
+      <if test="saveTime != null" >
+        SAVE_TIME = #{saveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealDeviceCode != null" >
+        DEAL_DEVICE_CODE = #{dealDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSeqGroupNo != null" >
+        DEAL_SEQ_GROUP_NO = #{dealSeqGroupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSeqNo != null" >
+        DEAL_SEQ_NO = #{dealSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealStation != null" >
+        DEAL_STATION = #{dealStation,jdbcType=VARCHAR},
+      </if>
+      <if test="dealType != null" >
+        DEAL_TYPE = #{dealType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainType != null" >
+        MAIN_TYPE = #{mainType,jdbcType=VARCHAR},
+      </if>
+      <if test="subType != null" >
+        SUB_TYPE = #{subType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="samCode != null" >
+        SAM_CODE = #{samCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logicalCode != null" >
+        LOGICAL_CODE = #{logicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="readCount != null" >
+        READ_COUNT = #{readCount,jdbcType=DECIMAL},
+      </if>
+      <if test="dealAmount != null" >
+        DEAL_AMOUNT = #{dealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        BALANCE = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="dealTime != null" >
+        DEAL_TIME = #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tac != null" >
+        TAC = #{tac,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        OPERATION_DATE = #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealMode != null" >
+        DEAL_MODE = #{dealMode,jdbcType=VARCHAR},
+      </if>
+      <if test="recFlag != null" >
+        REC_FLAG = #{recFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="matchFlag != null" >
+        MATCH_FLAG = #{matchFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTime != null" >
+        MATCH_TIME = #{matchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accFlag != null" >
+        ACC_FLAG = #{accFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="accFileName != null" >
+        ACC_FILE_NAME = #{accFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="accFileTime != null" >
+        ACC_FILE_TIME = #{accFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accFileLineCode != null" >
+        ACC_FILE_LINE_CODE = #{accFileLineCode,jdbcType=DECIMAL},
+      </if>
+      <if test="splitTime != null" >
+        SPLIT_TIME = #{splitTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where EVENT_NO = #{eventNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.metro.entity.YlDealIn" >
+    update YL_DEAL_IN
+    set SAVE_TIME = #{saveTime,jdbcType=TIMESTAMP},
+      DEAL_DEVICE_CODE = #{dealDeviceCode,jdbcType=VARCHAR},
+      DEAL_SEQ_GROUP_NO = #{dealSeqGroupNo,jdbcType=VARCHAR},
+      DEAL_SEQ_NO = #{dealSeqNo,jdbcType=VARCHAR},
+      DEAL_STATION = #{dealStation,jdbcType=VARCHAR},
+      DEAL_TYPE = #{dealType,jdbcType=VARCHAR},
+      MAIN_TYPE = #{mainType,jdbcType=VARCHAR},
+      SUB_TYPE = #{subType,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      SAM_CODE = #{samCode,jdbcType=VARCHAR},
+      LOGICAL_CODE = #{logicalCode,jdbcType=VARCHAR},
+      READ_COUNT = #{readCount,jdbcType=DECIMAL},
+      DEAL_AMOUNT = #{dealAmount,jdbcType=DECIMAL},
+      BALANCE = #{balance,jdbcType=DECIMAL},
+      DEAL_TIME = #{dealTime,jdbcType=TIMESTAMP},
+      TAC = #{tac,jdbcType=VARCHAR},
+      OPERATION_DATE = #{operationDate,jdbcType=TIMESTAMP},
+      DEAL_MODE = #{dealMode,jdbcType=VARCHAR},
+      REC_FLAG = #{recFlag,jdbcType=VARCHAR},
+      MATCH_FLAG = #{matchFlag,jdbcType=VARCHAR},
+      MATCH_TIME = #{matchTime,jdbcType=TIMESTAMP},
+      ACC_FLAG = #{accFlag,jdbcType=VARCHAR},
+      ACC_FILE_NAME = #{accFileName,jdbcType=VARCHAR},
+      ACC_FILE_TIME = #{accFileTime,jdbcType=TIMESTAMP},
+      ACC_FILE_LINE_CODE = #{accFileLineCode,jdbcType=DECIMAL},
+      SPLIT_TIME = #{splitTime,jdbcType=TIMESTAMP}
+    where EVENT_NO = #{eventNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
