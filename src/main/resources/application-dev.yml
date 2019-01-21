@@ -3,8 +3,8 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@61.183.232.58:8521:oraletest
-    username: iafc_dev
-    password: iafc123
+    username: 
+    password: 
   activemq:
     user: admin
     password: admin
